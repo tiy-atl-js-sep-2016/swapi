@@ -25,6 +25,11 @@ console.log(container);
 
 // getEtsyResults("whiskey");
 
+function handleError (req) {
+  console.log("OH CRAP. AN ERROR.");
+  console.log(req);
+}
+
 var planetId = 1;
 
 function planetTemplate (planet) {
@@ -42,7 +47,8 @@ function addPlanet (data) {
 function nextPlanet (event) {
   var example = $.ajax({
     url: `http://swapi.co/api/planets/${planetId}`,
-    success: addPlanet
+    success: addPlanet,
+    error: handleError
   });
   planetId += 1;
 };
